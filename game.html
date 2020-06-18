@@ -19,18 +19,23 @@
         function updateView() {
             const guessText = guessNumber == null ? '' : `Du tippet ${guessNumber}.<br/>`;
 
-            let isCorrectOrNotText;
-            if(guessNumber==null){
-                isCorrectOrNotText = 'Skriv inn tallet du vil tippe i feltet under og trykk på knappen "Tipp"<br/>';
-            } else if (guessNumber == secretNumber) {
-                isCorrectOrNotText = '<b>Du har tippet riktig!</b>';
-            } else {
-                if (guessNumber < secretNumber) {
-                    isCorrectOrNotText = 'Du har tippet for lavt.';
-                } else {
-                    isCorrectOrNotText = 'Du har tippet for høyt.';
-                }
-            }
+            let isCorrectOrNotText = 
+                guessNumber == null ? 'Skriv inn tallet du vil tippe i feltet under og trykk på knappen "Tipp"<br/>' : 
+                guessNumber == secretNumber ? '<b>Du har tippet riktig!</b>' : 
+                guessNumber < secretNumber ? 'Du har tippet for lavt.' : 
+                guessNumber > secretNumber ? 'Du har tippet for høyt.' : 
+                '(Feil - dette skal ikke forekomm)';
+
+            // let isCorrectOrNotText;
+            // if (guessNumber == null) {
+            //     isCorrectOrNotText = 'Skriv inn tallet du vil tippe i feltet under og trykk på knappen "Tipp"<br/>';
+            // } else if (guessNumber == secretNumber) {
+            //     isCorrectOrNotText = '<b>Du har tippet riktig!</b>';
+            // } else if (guessNumber < secretNumber) {
+            //     isCorrectOrNotText = 'Du har tippet for lavt.';
+            // } else {
+            //     isCorrectOrNotText = 'Du har tippet for høyt.';
+            // }
 
             document.getElementById('app').innerHTML = `
                 <h2>Tipp-tallet-spillet</h2>
@@ -53,7 +58,7 @@
             updateView();
         }
 
-        function guess(){
+        function guess() {
             updateView();
         }
     </script>
